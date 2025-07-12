@@ -4,6 +4,7 @@ import requests
 import pandas as pd
 from dotenv import  load_dotenv
 import  os
+import altair as alt
 
 load_dotenv()
 
@@ -35,6 +36,7 @@ def expense_analytics():
 
         df=pd.DataFrame(str_response)
         df_sorted=df.sort_values(by="Percentage",ascending=False)
+
         total_sum = df_sorted['Total'].astype(float).sum()
 
         col_sum, col_download = st.columns([3, 1.5])
@@ -52,7 +54,15 @@ def expense_analytics():
                 use_container_width=True
             )
 
-        st.bar_chart(data=df_sorted.set_index("Category")["Percentage"])
+        chart = alt.Chart(df_sorted).mark_bar().encode(
+            x=alt.X('Category:N', sort=None, axis=alt.Axis(labelAngle=0)),  # labelAngle=0 -> horizontal
+            y='Percentage:Q'
+        ).properties(
+            width=600,
+            height=400
+        )
+
+        st.altair_chart(chart, use_container_width=True)
 
         st.dataframe(df_sorted.style.format({
             "Total": "Rs.{:,.2f}",
