@@ -16,6 +16,11 @@ This project is a simple **expense tracking system** built with a **three-tier a
 
 ---
 
+## 📊 Expense Analytics Dashboard
+
+![Expense Analytics](screenshot/AnalyticsUI.png)
+
+
 ## 🚀 **Setup Instructions**
 
 1. **Clone the repository:**
