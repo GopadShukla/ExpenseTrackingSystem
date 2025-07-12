@@ -112,3 +112,6 @@ def delete_expense(column_name, value):
             logger.info(f"Deleted expense(s) where {column_name} = {value}")
 
 
+if __name__ == "__main__":
+    test = update_expense_by_id(113,55,"Food","Dixit General Store")
+    print(test)
